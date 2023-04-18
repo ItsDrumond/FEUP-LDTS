@@ -1,0 +1,274 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > Snake</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.l13gr01.snake.Model.Game</a>
+</div>
+
+<h1>Coverage Summary for Class: Snake (com.l13gr01.snake.Model.Game)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Snake</td>
+<td class="coverageStat">
+  <span class="percent">
+    83,3%
+  </span>
+  <span class="absValue">
+    (10/12)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    91,1%
+  </span>
+  <span class="absValue">
+    (51/56)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">Snake$MockitoMock$92789924</td>
+  </tr>
+  <tr>
+    <td class="name">Snake$MockitoMock$92789924$auxiliary$1ZjZ3JWN</td>
+  </tr>
+  <tr>
+    <td class="name">Snake$MockitoMock$92789924$auxiliary$2XKDfW0W</td>
+  </tr>
+  <tr>
+    <td class="name">Snake$MockitoMock$92789924$auxiliary$4LIUWK3Z</td>
+  </tr>
+  <tr>
+    <td class="name">Snake$MockitoMock$92789924$auxiliary$4QG5njpV</td>
+  </tr>
+  <tr>
+    <td class="name">Snake$MockitoMock$92789924$auxiliary$birWAqTU</td>
+  </tr>
+  <tr>
+    <td class="name">Snake$MockitoMock$92789924$auxiliary$Dq9mazUm</td>
+  </tr>
+  <tr>
+    <td class="name">Snake$MockitoMock$92789924$auxiliary$DvUMrE6O</td>
+  </tr>
+  <tr>
+    <td class="name">Snake$MockitoMock$92789924$auxiliary$EqlI8Pad</td>
+  </tr>
+  <tr>
+    <td class="name">Snake$MockitoMock$92789924$auxiliary$hyqVAbH8</td>
+  </tr>
+  <tr>
+    <td class="name">Snake$MockitoMock$92789924$auxiliary$LA86ojP1</td>
+  </tr>
+  <tr>
+    <td class="name">Snake$MockitoMock$92789924$auxiliary$lHQ0d2CI</td>
+  </tr>
+  <tr>
+    <td class="name">Snake$MockitoMock$92789924$auxiliary$w4Rj8fA0</td>
+  </tr>
+  <tr>
+    <td class="name">Snake$MockitoMock$92789924$auxiliary$xKySGIKi</td>
+  </tr>
+  <tr>
+    <td class="name">Snake$MockitoMock$92789924$auxiliary$XULw8ZAE</td>
+  </tr>
+  <tr>
+    <td class="name">Snake$MockitoMock$92789924$auxiliary$yTyXzqaF</td>
+  </tr>
+  <tr>
+    <td class="name">Snake$MockitoMock$92789924$auxiliary$zHy6CEZl</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    83,3%
+  </span>
+  <span class="absValue">
+    (10/12)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    91,1%
+  </span>
+  <span class="absValue">
+    (51/56)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.l13gr01.snake.Model.Game;
+&nbsp;
+&nbsp;import com.l13gr01.snake.Model.Position;
+&nbsp;
+&nbsp;import java.util.ArrayList;
+&nbsp;
+&nbsp;public class Snake extends Element{
+&nbsp;    private ArrayList&lt;Position&gt; body;
+<b class="fc">&nbsp;    private boolean selfCollision = false;</b>
+&nbsp;
+&nbsp;    public Snake(int x, int y){
+<b class="fc">&nbsp;        super(x,y);</b>
+<b class="fc">&nbsp;        body = new ArrayList&lt;&gt;();</b>
+&nbsp;
+<b class="fc">&nbsp;        int snake_Body_Size_Init = 4;</b>
+<b class="fc">&nbsp;        for (int i = 0; i &lt; snake_Body_Size_Init; i++){</b>
+<b class="fc">&nbsp;            body.add(new Position(x,y));</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    public void moveLeft(){
+<b class="fc">&nbsp;        ArrayList&lt;Position&gt; oldBody = getBody();</b>
+<b class="fc">&nbsp;        Position oldHead = getHead();</b>
+<b class="fc">&nbsp;        if(!oldBody.contains(oldHead.moveLeft())) {</b>
+<b class="fc">&nbsp;            Position newHead = oldHead.moveLeft();</b>
+<b class="fc">&nbsp;            oldBody.add(0,newHead);</b>
+<b class="fc">&nbsp;            oldBody.remove(oldBody.size()-1);</b>
+<b class="fc">&nbsp;            setBody(oldBody);</b>
+<b class="fc">&nbsp;            setHeadPosition(newHead);</b>
+<b class="fc">&nbsp;        }</b>
+&nbsp;        else{
+<b class="fc">&nbsp;            selfCollision = true;</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    public void moveRight(){
+<b class="fc">&nbsp;        ArrayList&lt;Position&gt; oldBody = getBody();</b>
+<b class="fc">&nbsp;        Position oldHead = getHead();</b>
+<b class="fc">&nbsp;        if(!oldBody.contains(oldHead.moveRight())) {</b>
+<b class="fc">&nbsp;            Position newHead = oldHead.moveRight();</b>
+<b class="fc">&nbsp;            oldBody.add(0,newHead);</b>
+<b class="fc">&nbsp;            oldBody.remove(oldBody.size()-1);</b>
+<b class="fc">&nbsp;            setBody(oldBody);</b>
+<b class="fc">&nbsp;            setHeadPosition(newHead);</b>
+<b class="fc">&nbsp;        }</b>
+&nbsp;        else{
+<b class="fc">&nbsp;            selfCollision = true;</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    public void moveUp(){
+<b class="fc">&nbsp;        ArrayList&lt;Position&gt; oldBody = getBody();</b>
+<b class="fc">&nbsp;        Position oldHead = getHead();</b>
+<b class="fc">&nbsp;        if(!oldBody.contains(oldHead.moveUp())) {</b>
+<b class="fc">&nbsp;            Position newHead = oldHead.moveUp();</b>
+<b class="fc">&nbsp;            oldBody.add(0,newHead);</b>
+<b class="fc">&nbsp;            oldBody.remove(oldBody.size()-1);</b>
+<b class="fc">&nbsp;            setBody(oldBody);</b>
+<b class="fc">&nbsp;            setHeadPosition(newHead);</b>
+<b class="fc">&nbsp;        }</b>
+&nbsp;        else{
+<b class="fc">&nbsp;            selfCollision = true;</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    public void moveDown(){
+<b class="fc">&nbsp;        ArrayList&lt;Position&gt; oldBody = getBody();</b>
+<b class="fc">&nbsp;        Position oldHead = getHead();</b>
+<b class="fc">&nbsp;        if(!oldBody.contains(oldHead.moveDown())){</b>
+<b class="fc">&nbsp;            Position newHead = oldHead.moveDown();</b>
+<b class="fc">&nbsp;            oldBody.add(0,newHead);</b>
+<b class="fc">&nbsp;            oldBody.remove(oldBody.size()-1);</b>
+<b class="fc">&nbsp;            setBody(oldBody);</b>
+<b class="fc">&nbsp;            setHeadPosition(newHead);</b>
+<b class="fc">&nbsp;        }</b>
+&nbsp;        else{
+<b class="fc">&nbsp;            selfCollision = true;</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    public void cutInHalf(){
+<b class="nc">&nbsp;        if(body.size() &gt;= 8) {</b>
+<b class="nc">&nbsp;            int length = body.size();</b>
+<b class="nc">&nbsp;            while (body.size() &gt; (length / 1.5)) {</b>
+<b class="nc">&nbsp;                body.remove(body.size()-1);</b>
+&nbsp;            }
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    public ArrayList&lt;Position&gt; getBody(){
+<b class="fc">&nbsp;        return body;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public Position getHead(){
+<b class="fc">&nbsp;        return this.position;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setBody(ArrayList&lt;Position&gt; newBody){
+<b class="fc">&nbsp;        this.body = newBody;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setHeadPosition(Position position) {
+<b class="fc">&nbsp;        this.position = position;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public boolean getSelfCollision(){
+<b class="fc">&nbsp;        return selfCollision;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void grow(){
+<b class="nc">&nbsp;        body.add(getHead());</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-12-23 21:32</div>
+</div>
+</body>
+</html>

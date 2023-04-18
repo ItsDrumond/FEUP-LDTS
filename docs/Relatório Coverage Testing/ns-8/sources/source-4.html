@@ -1,0 +1,272 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > GameStateRR</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.l13gr01.snake.States</a>
+</div>
+
+<h1>Coverage Summary for Class: GameStateRR (com.l13gr01.snake.States)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">GameStateRR</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    75%
+  </span>
+  <span class="absValue">
+    (3/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    46,1%
+  </span>
+  <span class="absValue">
+    (47/102)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.l13gr01.snake.States;
+&nbsp;
+&nbsp;import com.l13gr01.snake.Action;
+&nbsp;import com.l13gr01.snake.Controller.Game.RabbitController;
+&nbsp;import com.l13gr01.snake.Controller.Game.RockController;
+&nbsp;import com.l13gr01.snake.Controller.Game.SnakeController;
+&nbsp;import com.l13gr01.snake.Game;
+&nbsp;import com.l13gr01.snake.Gui.Gui;
+&nbsp;import com.l13gr01.snake.Model.Game.Rock;
+&nbsp;import com.l13gr01.snake.Model.Game.Stage;
+&nbsp;import com.l13gr01.snake.Model.Game.Wall;
+&nbsp;import com.l13gr01.snake.Model.Position;
+&nbsp;import com.l13gr01.snake.Viewer.Game.*;
+&nbsp;
+&nbsp;import java.io.IOException;
+&nbsp;import java.util.ArrayList;
+&nbsp;
+&nbsp;public class GameStateRR extends State{
+<b class="fc">&nbsp;    private Stage stage = new Stage(22,23);</b>
+<b class="fc">&nbsp;    private RockView RockDisplay = new RockView();</b>
+<b class="fc">&nbsp;    private RockController rocks = new RockController(stage.getRocks(), stage.getWidth(), stage.getHeight());</b>
+<b class="fc">&nbsp;    private SnakeView SnakeDisplay = new SnakeView();</b>
+<b class="fc">&nbsp;    private FruitView FruitDisplay = new FruitView();</b>
+<b class="fc">&nbsp;    private StageView StageDisplay = new StageView();</b>
+<b class="fc">&nbsp;    private RabbitView RabbitDisplay = new RabbitView();</b>
+<b class="fc">&nbsp;    private WallView WallDisplay = new WallView();</b>
+<b class="fc">&nbsp;    private int points = 0;</b>
+<b class="fc">&nbsp;    private int fruitEatenWhileSpawned = 0;</b>
+&nbsp;    private int rabbitDirection;
+<b class="fc">&nbsp;    private ArrayList&lt;Position&gt; last_positions = new ArrayList&lt;&gt;();</b>
+<b class="fc">&nbsp;    private ArrayList&lt;Position&gt; first_positions = new ArrayList&lt;&gt;();</b>
+<b class="fc">&nbsp;    RabbitController rabbitController = new RabbitController(stage.getRabbit());</b>
+<b class="fc">&nbsp;    SnakeController snakeDirection = new SnakeController(stage.getSnake(), Action.RIGHT);</b>
+&nbsp;
+<b class="fc">&nbsp;    public GameStateRR(){}</b>
+&nbsp;
+&nbsp;    public void draw(Gui gui) throws IOException{
+<b class="nc">&nbsp;        gui.clear();</b>
+<b class="nc">&nbsp;        StageDisplay.draw(gui, stage);</b>
+<b class="nc">&nbsp;        FruitDisplay.draw(gui, stage.getFruit());</b>
+<b class="nc">&nbsp;        RabbitDisplay.draw(gui, stage.getRabbit());</b>
+<b class="nc">&nbsp;        SnakeDisplay.draw(gui, stage.getSnake());</b>
+<b class="nc">&nbsp;        for(Rock rock : stage.getRocks()){RockDisplay.draw(gui, rock);}</b>
+<b class="nc">&nbsp;        WallDisplay.draw(gui, stage.getWalls());</b>
+<b class="nc">&nbsp;        gui.drawText(0,0,&quot;#FFFFFF&quot;, String.valueOf(points), false);</b>
+<b class="nc">&nbsp;        gui.refresh();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public Boolean step(Gui gui, Game game) throws IOException {
+<b class="fc">&nbsp;        first_positions.clear();</b>
+<b class="fc">&nbsp;        first_positions.add(stage.getSnake().getPosition());</b>
+<b class="fc">&nbsp;        for (Rock rock : stage.getRocks()) {</b>
+<b class="fc">&nbsp;            first_positions.add(rock.getPosition());</b>
+<b class="fc">&nbsp;        }</b>
+<b class="fc">&nbsp;        Action action = gui.getNextAction();</b>
+<b class="fc">&nbsp;        if (action != Action.NONE) {</b>
+<b class="fc">&nbsp;            if (action == Action.EOF) {</b>
+<b class="nc">&nbsp;                return true;</b>
+<b class="fc">&nbsp;            } else if (action == Action.QUIT) {</b>
+<b class="fc">&nbsp;                gui.close();</b>
+<b class="fc">&nbsp;                return true;</b>
+<b class="fc">&nbsp;            } else if (action == Action.UP) {</b>
+<b class="nc">&nbsp;                if (snakeDirection.getAction() != Action.DOWN) {</b>
+<b class="nc">&nbsp;                    snakeDirection.setDirections(action);</b>
+&nbsp;                }
+<b class="fc">&nbsp;            } else if (action == Action.LEFT) {</b>
+<b class="nc">&nbsp;                if (snakeDirection.getAction() != Action.RIGHT) {</b>
+<b class="nc">&nbsp;                    snakeDirection.setDirections(action);</b>
+&nbsp;                }
+<b class="fc">&nbsp;            } else if (action == Action.DOWN) {</b>
+<b class="nc">&nbsp;                if (snakeDirection.getAction() != Action.UP) {</b>
+<b class="nc">&nbsp;                    snakeDirection.setDirections(action);</b>
+&nbsp;                }
+<b class="fc">&nbsp;            } else if (action == Action.RIGHT) {</b>
+<b class="nc">&nbsp;                if (snakeDirection.getAction() != Action.LEFT) {</b>
+<b class="nc">&nbsp;                    snakeDirection.setDirections(action);</b>
+&nbsp;                }
+<b class="fc">&nbsp;            } else if (action == Action.GROW) {</b>
+<b class="nc">&nbsp;                stage.getSnake().grow();</b>
+&nbsp;            }
+&nbsp;        }
+&nbsp;
+&nbsp;        //Random chance of spawning a rabbit [ ~0.5% every frame, %&#39;s can be tweaked @ Rabbit.java ]
+<b class="fc">&nbsp;        if (stage.getRabbit().randomChance() &amp;&amp; stage.getRabbit().getPosition().equals(new Position(0, 0))) {</b>
+<b class="nc">&nbsp;            fruitEatenWhileSpawned = 0;</b>
+<b class="nc">&nbsp;            stage.getRabbit().setRabbit(stage.getRabbit().generateRabbit(stage.getSnake().getBody(), stage.getWalls(), stage.getHeight(), stage.getWidth(), stage.getFruit()).getPosition());</b>
+<b class="nc">&nbsp;            rabbitDirection = stage.getRabbit().findNearestWall(stage.getWidth(), stage.getHeight());</b>
+&nbsp;        }
+&nbsp;
+&nbsp;        //If the rabbit is in the game after the player eats 3 foods, he will move randomly until he is off the screen
+<b class="fc">&nbsp;        if (fruitEatenWhileSpawned &gt;= 3 &amp;&amp; stage.getRabbit().getX() &gt;= 1 &amp;&amp; stage.getRabbit().getX() &lt;= stage.getWidth() - 1 &amp;&amp; stage.getRabbit().getY() &lt;= stage.getHeight() - 1 &amp;&amp; stage.getRabbit().getY() + 1 &gt;= 0) {</b>
+<b class="nc">&nbsp;            switch (rabbitDirection) {</b>
+<b class="nc">&nbsp;                case 1 -&gt; rabbitController.setAction(Action.UP);</b>
+<b class="nc">&nbsp;                case 2 -&gt; rabbitController.setAction(Action.LEFT);</b>
+<b class="nc">&nbsp;                case 3 -&gt; rabbitController.setAction(Action.DOWN);</b>
+<b class="nc">&nbsp;                case 4 -&gt; rabbitController.setAction(Action.RIGHT);</b>
+&nbsp;            }
+<b class="nc">&nbsp;            rabbitController.movement();</b>
+&nbsp;        }
+&nbsp;
+&nbsp;        //As soon as the rabbit is out of the walls, spawns again on 0,0
+<b class="fc">&nbsp;        if (!(stage.getRabbit().getX() &gt;= 1 &amp;&amp; stage.getRabbit().getX() &lt;= stage.getWidth() - 1 &amp;&amp; stage.getRabbit().getY() &lt;= stage.getHeight() - 1 &amp;&amp; stage.getRabbit().getY() + 1 &gt;= 0)) {</b>
+<b class="fc">&nbsp;            fruitEatenWhileSpawned = 0;</b>
+<b class="fc">&nbsp;            stage.getRabbit().setRabbit(new Position(0, 0));</b>
+&nbsp;        }
+&nbsp;
+&nbsp;        //Collision check -&gt; Snake : Snake &amp;&amp; Snake : Fruit
+<b class="fc">&nbsp;        if (stage.getSnake().getSelfCollision()) {</b>
+<b class="fc">&nbsp;            gui.close();</b>
+<b class="fc">&nbsp;            return true;</b>
+&nbsp;        }
+&nbsp;
+&nbsp;        //self collision check
+<b class="fc">&nbsp;        else if (stage.getSnake().getBody().contains(stage.getFruit().getPosition())) {</b>
+<b class="nc">&nbsp;            stage.getSnake().grow();</b>
+<b class="nc">&nbsp;            stage.setFruit(stage.getFruit().generateFruit(stage.getSnake().getBody(), stage.getWalls(), stage.getWidth(), stage.getHeight()));</b>
+<b class="nc">&nbsp;            if (!stage.getRabbit().getPosition().equals(new Position(0, 0))) fruitEatenWhileSpawned++;</b>
+<b class="nc">&nbsp;            points++;</b>
+&nbsp;        }
+&nbsp;
+&nbsp;        //Collision check -&gt; Snake : Rabbit
+<b class="fc">&nbsp;        if (stage.getSnake().getHead().equals(stage.getRabbit().getPosition())) {</b>
+<b class="nc">&nbsp;            stage.getRabbit().setRabbit(new Position(0, 0));</b>
+<b class="nc">&nbsp;            stage.getSnake().cutInHalf();</b>
+&nbsp;        }
+&nbsp;
+&nbsp;        //Collision check -&gt; Snake : Walls
+<b class="fc">&nbsp;        for (Wall wall : stage.getWalls()) {</b>
+<b class="fc">&nbsp;            if (stage.getSnake().getBody().contains(wall.getPosition())) {</b>
+<b class="fc">&nbsp;                gui.close();</b>
+<b class="fc">&nbsp;                return true;</b>
+&nbsp;            }
+<b class="fc">&nbsp;        }</b>
+&nbsp;
+&nbsp;        //Collision check -&gt; Snake : Rocks
+<b class="nc">&nbsp;        for (Rock rock : stage.getRocks()) {</b>
+<b class="nc">&nbsp;            if (stage.getSnake().getHead().equals(rock.getPosition())) {</b>
+<b class="nc">&nbsp;                gui.close();</b>
+<b class="nc">&nbsp;                return true;</b>
+&nbsp;            }
+<b class="nc">&nbsp;        }</b>
+&nbsp;
+&nbsp;        //Move the controllers
+<b class="nc">&nbsp;        snakeDirection.movement();</b>
+<b class="nc">&nbsp;        rocks.movement();</b>
+&nbsp;
+&nbsp;        //Collision check -&gt; Snake : Rocks
+<b class="nc">&nbsp;        for (Position position : first_positions) {</b>
+<b class="nc">&nbsp;            for (Position position2 : last_positions) {</b>
+<b class="nc">&nbsp;                if (first_positions.contains(new Position(position.getX(), position.getY() - 1)) &amp;&amp; last_positions.contains(new Position(position2.getX(), position2.getY() - 1))) {</b>
+<b class="nc">&nbsp;                    gui.close();</b>
+<b class="nc">&nbsp;                    return true;</b>
+&nbsp;                }
+<b class="nc">&nbsp;            }</b>
+<b class="nc">&nbsp;        }</b>
+<b class="nc">&nbsp;        last_positions.clear();</b>
+<b class="nc">&nbsp;        last_positions.add(stage.getSnake().getPosition());</b>
+<b class="nc">&nbsp;        for (Rock rock : stage.getRocks()) {</b>
+<b class="nc">&nbsp;            last_positions.add(rock.getPosition());</b>
+<b class="nc">&nbsp;        }</b>
+<b class="nc">&nbsp;        draw(gui);</b>
+<b class="nc">&nbsp;        return false;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public Stage getStage(){
+<b class="fc">&nbsp;        return this.stage;</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-12-23 21:32</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,160 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > RabbitController</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.l13gr01.snake.Controller.Game</a>
+</div>
+
+<h1>Coverage Summary for Class: RabbitController (com.l13gr01.snake.Controller.Game)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">RabbitController</td>
+<td class="coverageStat">
+  <span class="percent">
+    75%
+  </span>
+  <span class="absValue">
+    (3/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    90,9%
+  </span>
+  <span class="absValue">
+    (10/11)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">RabbitController$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    80%
+  </span>
+  <span class="absValue">
+    (4/5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    91,7%
+  </span>
+  <span class="absValue">
+    (11/12)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.l13gr01.snake.Controller.Game;
+&nbsp;
+&nbsp;import com.l13gr01.snake.Action;
+&nbsp;import com.l13gr01.snake.Model.Game.Rabbit;
+&nbsp;
+&nbsp;public class RabbitController implements Controller{
+&nbsp;    private Rabbit rabbit;
+&nbsp;    private Action action;
+&nbsp;
+<b class="fc">&nbsp;    public RabbitController(Rabbit rabbit){</b>
+<b class="fc">&nbsp;        this.rabbit = rabbit;</b>
+&nbsp;    }
+<b class="fc">&nbsp;    public RabbitController(Rabbit rabbit, Action action){</b>
+<b class="fc">&nbsp;        this.rabbit = rabbit;</b>
+<b class="fc">&nbsp;        this.action = action;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setAction(Action action){
+<b class="nc">&nbsp;        this.action = action;</b>
+&nbsp;    }
+&nbsp;    @Override
+&nbsp;    public void movement(){
+<b class="fc">&nbsp;        switch (action) {</b>
+<b class="fc">&nbsp;            case LEFT -&gt; rabbit.moveLeft();</b>
+<b class="fc">&nbsp;            case RIGHT -&gt; rabbit.moveRight();</b>
+<b class="fc">&nbsp;            case UP -&gt; rabbit.moveUp();</b>
+<b class="fc">&nbsp;            case DOWN -&gt; rabbit.moveDown();</b>
+&nbsp;            default -&gt; {}
+&nbsp;        }
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-12-23 21:32</div>
+</div>
+</body>
+</html>

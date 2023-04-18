@@ -1,0 +1,335 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > Gui</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.l13gr01.snake.Gui</a>
+</div>
+
+<h1>Coverage Summary for Class: Gui (com.l13gr01.snake.Gui)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Gui</td>
+<td class="coverageStat">
+  <span class="percent">
+    47,1%
+  </span>
+  <span class="absValue">
+    (8/17)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    24,6%
+  </span>
+  <span class="absValue">
+    (17/69)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">Gui$MockitoMock$31357615</td>
+  </tr>
+  <tr>
+    <td class="name">Gui$MockitoMock$31357615$auxiliary$1yCdBZbz</td>
+  </tr>
+  <tr>
+    <td class="name">Gui$MockitoMock$31357615$auxiliary$5FIq83cM</td>
+  </tr>
+  <tr>
+    <td class="name">Gui$MockitoMock$31357615$auxiliary$7E6i0rqf</td>
+  </tr>
+  <tr>
+    <td class="name">Gui$MockitoMock$31357615$auxiliary$dDze9cbb</td>
+  </tr>
+  <tr>
+    <td class="name">Gui$MockitoMock$31357615$auxiliary$EFsh27Uz</td>
+  </tr>
+  <tr>
+    <td class="name">Gui$MockitoMock$31357615$auxiliary$gYElfiV7</td>
+  </tr>
+  <tr>
+    <td class="name">Gui$MockitoMock$31357615$auxiliary$MtbFmrYT</td>
+  </tr>
+  <tr>
+    <td class="name">Gui$MockitoMock$31357615$auxiliary$nZ76JGo8</td>
+  </tr>
+  <tr>
+    <td class="name">Gui$MockitoMock$31357615$auxiliary$oWdQxZUz</td>
+  </tr>
+  <tr>
+    <td class="name">Gui$MockitoMock$31357615$auxiliary$qIdKGcqN</td>
+  </tr>
+  <tr>
+    <td class="name">Gui$MockitoMock$31357615$auxiliary$rnVDr2dN</td>
+  </tr>
+  <tr>
+    <td class="name">Gui$MockitoMock$31357615$auxiliary$U0b9b4WG</td>
+  </tr>
+  <tr>
+    <td class="name">Gui$MockitoMock$31357615$auxiliary$UFVS4C4M</td>
+  </tr>
+  <tr>
+    <td class="name">Gui$MockitoMock$31357615$auxiliary$V8c9HsUe</td>
+  </tr>
+  <tr>
+    <td class="name">Gui$MockitoMock$31357615$auxiliary$WHuIQbzw</td>
+  </tr>
+  <tr>
+    <td class="name">Gui$MockitoMock$31357615$auxiliary$x4ZFP2jR</td>
+  </tr>
+  <tr>
+    <td class="name">Gui$MockitoMock$31357615$auxiliary$YypwnyJi</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    47,1%
+  </span>
+  <span class="absValue">
+    (8/17)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    24,6%
+  </span>
+  <span class="absValue">
+    (17/69)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.l13gr01.snake.Gui;
+&nbsp;
+&nbsp;import com.googlecode.lanterna.TerminalPosition;
+&nbsp;import com.googlecode.lanterna.TerminalSize;
+&nbsp;import com.googlecode.lanterna.TextColor;
+&nbsp;import com.googlecode.lanterna.graphics.TextGraphics;
+&nbsp;import com.googlecode.lanterna.input.KeyStroke;
+&nbsp;import com.googlecode.lanterna.input.KeyType;
+&nbsp;import com.googlecode.lanterna.screen.Screen;
+&nbsp;import com.googlecode.lanterna.screen.TerminalScreen;
+&nbsp;import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
+&nbsp;import com.googlecode.lanterna.terminal.Terminal;
+&nbsp;import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
+&nbsp;import com.l13gr01.snake.Action;
+&nbsp;import com.l13gr01.snake.Model.Game.*;
+&nbsp;import com.l13gr01.snake.Model.Position;
+&nbsp;import com.l13gr01.snake.Model.Menu.Menu;
+&nbsp;
+&nbsp;import java.awt.*;
+&nbsp;import java.io.File;
+&nbsp;import java.io.IOException;
+&nbsp;import java.net.URISyntaxException;
+&nbsp;import java.net.URL;
+&nbsp;
+&nbsp;public class Gui implements GuiInterface{
+&nbsp;    private Screen screen;
+&nbsp;    private TextGraphics tg;
+<b class="fc">&nbsp;    private final int terminalSizeCol = 22;</b>
+<b class="fc">&nbsp;    private final int terminalSizeRows = 23;</b>
+&nbsp;
+<b class="nc">&nbsp;    public Gui() throws URISyntaxException, IOException, FontFormatException {</b>
+<b class="nc">&nbsp;        screen = createScreen(createTerminal(loadSquareFont()));</b>
+<b class="nc">&nbsp;        tg = screen.newTextGraphics();</b>
+&nbsp;    }
+<b class="fc">&nbsp;    public Gui(Screen screen) throws URISyntaxException, IOException, FontFormatException {</b>
+<b class="fc">&nbsp;        this.screen = screen;</b>
+<b class="fc">&nbsp;        tg = screen.newTextGraphics();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public Screen createScreen(Terminal terminal) throws IOException{
+<b class="nc">&nbsp;        screen = new TerminalScreen(terminal);</b>
+<b class="nc">&nbsp;        screen.setCursorPosition(null);</b>
+<b class="nc">&nbsp;        screen.startScreen();</b>
+<b class="nc">&nbsp;        screen.doResizeIfNecessary();</b>
+<b class="nc">&nbsp;        return screen;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public Terminal createTerminal(AWTTerminalFontConfiguration fontConfig) throws IOException {
+<b class="nc">&nbsp;        TerminalSize terminalSize = new TerminalSize(terminalSizeCol,terminalSizeRows);</b>
+<b class="nc">&nbsp;        DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory().setInitialTerminalSize(terminalSize);</b>
+&nbsp;        Terminal terminal;
+<b class="nc">&nbsp;        terminalFactory.setForceAWTOverSwing(true);</b>
+<b class="nc">&nbsp;        terminalFactory.setTerminalEmulatorFontConfiguration(fontConfig);</b>
+<b class="nc">&nbsp;        terminal = terminalFactory.createTerminal();</b>
+<b class="nc">&nbsp;        return terminal;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public AWTTerminalFontConfiguration loadSquareFont() throws URISyntaxException, FontFormatException, IOException {
+<b class="nc">&nbsp;        URL resource = getClass().getClassLoader().getResource(&quot;fonts/square.ttf&quot;);</b>
+<b class="nc">&nbsp;        File fontFile = new File(resource.toURI());</b>
+<b class="nc">&nbsp;        Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile);</b>
+&nbsp;
+<b class="nc">&nbsp;        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();</b>
+<b class="nc">&nbsp;        ge.registerFont(font);</b>
+&nbsp;
+<b class="nc">&nbsp;        Font loadedFont = font.deriveFont(Font.PLAIN, 15);</b>
+<b class="nc">&nbsp;        AWTTerminalFontConfiguration fontConfig = AWTTerminalFontConfiguration.newInstance(loadedFont);</b>
+<b class="nc">&nbsp;        return fontConfig;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public Action getNextAction() throws IOException {
+<b class="nc">&nbsp;        KeyStroke keyStroke = screen.pollInput();</b>
+<b class="nc">&nbsp;        if (keyStroke == null) return Action.NONE;</b>
+&nbsp;
+<b class="nc">&nbsp;        if (keyStroke.getKeyType() == KeyType.EOF) return Action.EOF;</b>
+<b class="nc">&nbsp;        if (keyStroke.getKeyType() == KeyType.Character &amp;&amp; keyStroke.getCharacter() == &#39;q&#39;) return Action.QUIT;</b>
+&nbsp;
+<b class="nc">&nbsp;        if (keyStroke.getKeyType() == KeyType.ArrowUp) return Action.UP;</b>
+<b class="nc">&nbsp;        if (keyStroke.getKeyType() == KeyType.ArrowRight) return Action.RIGHT;</b>
+<b class="nc">&nbsp;        if (keyStroke.getKeyType() == KeyType.ArrowDown) return Action.DOWN;</b>
+<b class="nc">&nbsp;        if (keyStroke.getKeyType() == KeyType.ArrowLeft) return Action.LEFT;</b>
+<b class="nc">&nbsp;        if (keyStroke.getKeyType() == KeyType.Character &amp;&amp; keyStroke.getCharacter() == &#39;g&#39;) return Action.GROW;</b>
+&nbsp;
+<b class="nc">&nbsp;        if (keyStroke.getKeyType() == KeyType.Enter) return Action.SELECT;</b>
+&nbsp;
+<b class="nc">&nbsp;        return Action.NONE;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void drawText(int col, int row, String color, String text, boolean default_color){
+<b class="nc">&nbsp;       if(!default_color){</b>
+<b class="nc">&nbsp;           tg.setForegroundColor(TextColor.Factory.fromString(color));</b>
+&nbsp;       }
+&nbsp;       else{
+<b class="nc">&nbsp;           tg.setBackgroundColor(TextColor.Factory.fromString(&quot;#13D700&quot;));</b>
+<b class="nc">&nbsp;           tg.setForegroundColor(TextColor.Factory.fromString(&quot;#000000&quot;));</b>
+&nbsp;       }
+<b class="nc">&nbsp;       tg.putString(col,row,text);</b>
+&nbsp;   }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void drawMenu(Menu menu) {
+<b class="nc">&nbsp;        tg.setForegroundColor(TextColor.Factory.fromString(&quot;#FFFFFF&quot;));</b>
+<b class="nc">&nbsp;        String sub = &quot;Serpent&quot;;</b>
+<b class="nc">&nbsp;        tg.putString(7,6,sub);</b>
+&nbsp;
+<b class="nc">&nbsp;        for (int j = 0; j &lt; menu.getNumberEntries(); j++) {</b>
+<b class="nc">&nbsp;            String str = menu.getEntry(j);</b>
+<b class="nc">&nbsp;            if(menu.isSelected(j)){</b>
+<b class="nc">&nbsp;                tg.setForegroundColor(TextColor.Factory.fromString(&quot;#FFD700&quot;));</b>
+&nbsp;            } else {
+<b class="nc">&nbsp;                tg.setForegroundColor(TextColor.Factory.fromString(&quot;#FFFFFF&quot;));</b>
+&nbsp;            }
+<b class="nc">&nbsp;            tg.putString(5,j+10, str);</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void drawStage(Stage stage){
+<b class="fc">&nbsp;        tg.setBackgroundColor(TextColor.Factory.fromString(&quot;#13D700&quot;));</b>
+<b class="fc">&nbsp;        tg.fillRectangle(new TerminalPosition(0, 0), new TerminalSize(stage.getWidth(), stage.getHeight()), &#39; &#39;);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void drawWall(Wall wall){
+<b class="fc">&nbsp;        tg.setBackgroundColor(TextColor.Factory.fromString(&quot;#000000&quot;));</b>
+<b class="fc">&nbsp;        tg.fillRectangle(new TerminalPosition(wall.getX(), wall.getY()), new TerminalSize(1, 1), &#39; &#39;);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void drawSnake(Snake snake){
+<b class="fc">&nbsp;        tg.setBackgroundColor(TextColor.Factory.fromString(&quot;#FFFFFF&quot;));</b>
+<b class="fc">&nbsp;        for(Position body_piece : snake.getBody()){</b>
+<b class="nc">&nbsp;            tg.fillRectangle(new TerminalPosition(body_piece.getX(), body_piece.getY()), new TerminalSize(1, 1), &#39; &#39;);</b>
+<b class="nc">&nbsp;        }</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void drawRock(Rock rock){
+<b class="fc">&nbsp;        tg.setBackgroundColor(TextColor.Factory.fromString(&quot;#808080&quot;));</b>
+<b class="fc">&nbsp;        tg.fillRectangle(new TerminalPosition(rock.getX(), rock.getY()), new TerminalSize(1,1), &#39; &#39;);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void drawFruit(Fruit fruit){
+<b class="fc">&nbsp;        tg.setBackgroundColor(TextColor.Factory.fromString(&quot;#FF0000&quot;));</b>
+<b class="fc">&nbsp;        tg.fillRectangle(new TerminalPosition(fruit.getX(), fruit.getY()), new TerminalSize(1, 1), &#39; &#39;);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void drawRabbit(Rabbit rabbit){
+<b class="fc">&nbsp;        tg.setBackgroundColor(TextColor.Factory.fromString(&quot;#0000FF&quot;));</b>
+<b class="fc">&nbsp;        tg.fillRectangle(new TerminalPosition(rabbit.getX(), rabbit.getY()), new TerminalSize(1, 1), &#39; &#39;);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void refresh() throws IOException {
+<b class="nc">&nbsp;        screen.refresh();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void close() throws IOException {
+<b class="nc">&nbsp;        screen.stopScreen();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void clear() {
+<b class="nc">&nbsp;        screen.clear();</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-12-23 21:32</div>
+</div>
+</body>
+</html>

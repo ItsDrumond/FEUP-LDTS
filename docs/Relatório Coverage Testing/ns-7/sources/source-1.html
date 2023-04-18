@@ -1,0 +1,229 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > Menu</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.l13gr01.snake.Model.Menu</a>
+</div>
+
+<h1>Coverage Summary for Class: Menu (com.l13gr01.snake.Model.Menu)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Menu</td>
+<td class="coverageStat">
+  <span class="percent">
+    53,8%
+  </span>
+  <span class="absValue">
+    (7/13)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    70%
+  </span>
+  <span class="absValue">
+    (14/20)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">Menu$MockitoMock$403833622</td>
+  </tr>
+  <tr>
+    <td class="name">Menu$MockitoMock$403833622$auxiliary$4CDy6OXf</td>
+  </tr>
+  <tr>
+    <td class="name">Menu$MockitoMock$403833622$auxiliary$7ksk0iFd</td>
+  </tr>
+  <tr>
+    <td class="name">Menu$MockitoMock$403833622$auxiliary$9bFJwUaN</td>
+  </tr>
+  <tr>
+    <td class="name">Menu$MockitoMock$403833622$auxiliary$AtMXtpzz</td>
+  </tr>
+  <tr>
+    <td class="name">Menu$MockitoMock$403833622$auxiliary$ATubIA3J</td>
+  </tr>
+  <tr>
+    <td class="name">Menu$MockitoMock$403833622$auxiliary$bn6uUUHO</td>
+  </tr>
+  <tr>
+    <td class="name">Menu$MockitoMock$403833622$auxiliary$fERBRT7y</td>
+  </tr>
+  <tr>
+    <td class="name">Menu$MockitoMock$403833622$auxiliary$fEuMFC7B</td>
+  </tr>
+  <tr>
+    <td class="name">Menu$MockitoMock$403833622$auxiliary$lyNGWNPr</td>
+  </tr>
+  <tr>
+    <td class="name">Menu$MockitoMock$403833622$auxiliary$NH81NL5Q</td>
+  </tr>
+  <tr>
+    <td class="name">Menu$MockitoMock$403833622$auxiliary$NkCE0jVZ</td>
+  </tr>
+  <tr>
+    <td class="name">Menu$MockitoMock$403833622$auxiliary$OHamjOyN</td>
+  </tr>
+  <tr>
+    <td class="name">Menu$MockitoMock$403833622$auxiliary$oLvHIKEa</td>
+  </tr>
+  <tr>
+    <td class="name">Menu$MockitoMock$403833622$auxiliary$q2ahOYgX</td>
+  </tr>
+  <tr>
+    <td class="name">Menu$MockitoMock$403833622$auxiliary$TJb9zEXA</td>
+  </tr>
+  <tr>
+    <td class="name">Menu$MockitoMock$403833622$auxiliary$xnOfEquh</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    53,8%
+  </span>
+  <span class="absValue">
+    (7/13)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    70%
+  </span>
+  <span class="absValue">
+    (14/20)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.l13gr01.snake.Model.Menu;
+&nbsp;
+&nbsp;import com.l13gr01.snake.Model.Game.Element;
+&nbsp;
+&nbsp;import java.util.Arrays;
+&nbsp;import java.util.List;
+&nbsp;
+&nbsp;public class Menu extends Element{
+&nbsp;    private final List&lt;String&gt; entries;
+<b class="fc">&nbsp;    private int currentEntry = 0;</b>
+&nbsp;
+&nbsp;    public Menu() {
+<b class="fc">&nbsp;        super(10,10);</b>
+<b class="fc">&nbsp;        this.entries = Arrays.asList(&quot;Classic&quot;,&quot;Rabbits &amp; Rocks&quot;, &quot;Two Snakes&quot;,&quot;Limitless&quot;, &quot;Exit&quot;);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public Menu(boolean Menu2) {
+<b class="fc">&nbsp;        super(10,10);</b>
+<b class="fc">&nbsp;        this.entries = Arrays.asList(&quot;Easy&quot;, &quot;Medium&quot;,&quot;Insane&quot;);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void nextEntry() {
+<b class="fc">&nbsp;        currentEntry++;</b>
+<b class="fc">&nbsp;        if (currentEntry &gt; this.entries.size() - 1)</b>
+<b class="fc">&nbsp;            currentEntry = 0;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void previousEntry() {
+<b class="fc">&nbsp;        currentEntry--;</b>
+<b class="fc">&nbsp;        if (currentEntry &lt; 0)</b>
+<b class="fc">&nbsp;            currentEntry = this.entries.size() - 1;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public String getEntry(int i) {
+<b class="fc">&nbsp;        return entries.get(i);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public boolean isSelected(int i) {
+<b class="fc">&nbsp;        return currentEntry == i;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setSelected(int i){
+<b class="fc">&nbsp;        currentEntry = i;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public boolean isSelectedFirsti() {
+<b class="nc">&nbsp;        return isSelected(0);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public boolean isSelectedSecondi() {
+<b class="nc">&nbsp;        return isSelected(1);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public boolean isSelectedThirdi() {
+<b class="nc">&nbsp;        return isSelected(2);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public boolean isSelectedFourthi() {
+<b class="nc">&nbsp;        return isSelected(3);</b>
+&nbsp;    }
+&nbsp;    public boolean isSelectedExit() {
+<b class="nc">&nbsp;        return isSelected(4);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public int getNumberEntries() {
+<b class="nc">&nbsp;        return this.entries.size();</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-12-23 21:32</div>
+</div>
+</body>
+</html>
